@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,8 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <div class="collapse navbar-collapse" id="collapsib
+        leNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/">상품목록</a>
@@ -39,25 +41,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>바나나</td>
-            <td>1000원</td>
-            <td>50개</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>사과</td>
-            <td>2000원</td>
-            <td>50개</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>참외</td>
-            <td>500원</td>
-            <td>50개</td>
-        </tr>
+            <c:forEach var="p" items="${productList}">
+                <tr>
+                    <td>${p.id}</td>
+                    <td><a href="/product/${p.id}">${p.name}</a></td>
+                    <td>${p.price}원</td>
+                    <td>${p.qty}개</td>
+                </tr>
+            </c:forEach>
         </tbody>
+
     </table>
     <%--테이블--%>
 </div>

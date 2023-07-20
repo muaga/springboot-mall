@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--위에 코드가 있어야, 톰캣이 해석한다. 없으면 html 파일로 인식하고 해석하지 않은 상태에서 바로 브라우저에게 보낸다.--%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,28 +30,26 @@
         </div>
     </div>
 </nav>
-
 <div class="container mt-3">
-    <form action="/product" method="post" enctype="application/x-www-form-urlencoded">
-<%--
-form : 안에 데이터를 한 방에 전송하는 것
-action : 데이터를 한 번에 전송(받는) 식별자
-method : 기능
-enctype : 인코딩 타입 : MIME타입으로!
---%>
-        <div class="mb-3 mt-3">
-            <input type="text" class="form-control" placeholder="Enter 상품명" value="바나나" name="name">
-        </div>
-        <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Enter 상품가격" value="1000" name="price">
-        </div>
-        <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Enter 상품재고" value="50" name="qty">
-        </div>
-        <button type="submit" class="btn btn-primary">상품등록</button>
-<%--        input를 하게 하는 버튼으로, type이 submit이면 자동으로 폼이 제출되어 POST의 역할을 한다. --%>
+    <form action="/product/update" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="mb-3 mt-3">
+                <input type="text" class="form-control" value="${p.id}" name="id">
+            </div>
+            <div class="mb-3 mt-3">
+                <input type="text" class="form-control" value="${p.name}" name="name">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" value="${p.price}" name="price">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" value="${p.qty}" name="qty">
+            </div>
+        <button type="submit" class="btn btn-primary">상품수정</button>
+        </form>
+    <form action="/product/delete" method="post">
+        <input type="hidden" class="form-control" value="${p.id}" name="id">
+        <button type="submit" class="btn btn-danger">상품삭제</button>
     </form>
 </div>
-
 </body>
 </html>
